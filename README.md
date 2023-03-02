@@ -1,5 +1,6 @@
-# Guided transfer learning
-This repository implements our Guide transfer learning approach (see [our article](https://www.researchgate.net/publication/367378102_Guided_transfer_learning_Helping_deep_networks_when_learning_gets_tough)).
+# Guided transfer learning 
+This repository implements our Guide transfer learning(GTL) approach (see [our article](https://www.researchgate.net/publication/367378102_Guided_transfer_learning_Helping_deep_networks_when_learning_gets_tough)).
+We propose a new approach called Guided transfer learning, which involves assigning guiding parameters to each weight and bias in the network, allowing for a reduction in resources needed to train a network. Guided transfer learning enables the network to learn from a small amount of data and potentially has many applications in resource-efficient machine learning.
 
 # Installation
 1. Clone the repository
