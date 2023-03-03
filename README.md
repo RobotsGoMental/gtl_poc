@@ -8,13 +8,13 @@ We propose a new approach called Guided transfer learning, which involves assign
 git clone https://github.com/RobotsGoMental/gtl_poc.git
 cd gtl_poc
 ```
-2. Create a new conda environment with Python 3.9
+2. Create a new virtual environment with Python 3.9 using the following command
 ```bash
-conda create --name gtl python=3.9
+python3.9 -m venv gtl
 ```
-3. Activate the environment:
+3. Activate the virtual environment using the following command:
 ```bash
-conda activate gtl
+source gtl/bin/activate
 ``` 
 4. Install the required packages using the following command
 ```bash
@@ -43,4 +43,5 @@ This project was created by Danko Nikolić, Davor Andrić, Vjekoslav Nikolić
 
 # License
 
-This project is licensed under the [License Name]. 
+This project is licensed under the CC BY-NC-SA 4.0. 
+
