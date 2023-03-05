@@ -1,6 +1,5 @@
-import torch
-
 from libs.MultilayerLightningModel import MultilayerLightningModel
+from libs.gtl import apply_mask
 
 
 class MaskedModel(MultilayerLightningModel):
@@ -9,7 +8,4 @@ class MaskedModel(MultilayerLightningModel):
         self.mask = mask
 
     def on_after_backward(self):
-        if self.mask is not None:
-            for name, param in self.named_parameters():
-                if param.requires_grad:
-                    param.grad *= torch.tensor(self.mask[name], device=param.device)
+        apply_mask(mask=self.mask, model=self)
