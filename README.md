@@ -1,8 +1,8 @@
-# Guided transfer learning 
-This repository implements our Guide transfer learning(GTL) approach (see [our article](https://www.researchgate.net/publication/367378102_Guided_transfer_learning_Helping_deep_networks_when_learning_gets_tough)).
-We propose a new approach called Guided transfer learning, which involves assigning guiding parameters to each weight and bias in the network, allowing for a reduction in resources needed to train a network. Guided transfer learning enables the network to learn from a small amount of data and potentially has many applications in resource-efficient machine learning.
+# Guided Transfer Learning 
+This repository implements our Guided Transfer Learning (GTL) approach, for more details see [our publication](https://www.researchgate.net/publication/367378102_Guided_transfer_learning_Helping_deep_networks_when_learning_gets_tough).
+We propose a new approach called Guided Transfer Learning, which involves assigning guiding parameters to each weight and bias in the network, allowing for a reduction in resources needed to train a network. Guided Transfer Learning enables the network to learn from a small amount of data and potentially has many applications in resource-efficient machine learning.
 
-# Installation
+## Installation
 1. Clone the repository
 ```bash
 git clone https://github.com/RobotsGoMental/gtl_poc.git
@@ -35,13 +35,13 @@ tensorboard --logdir logs --bind_all
 ```
 4. Open http://localhost:6006 in your browser to access TensorBoard.
     
-# Credits
+## Credits
 
 This project was created by Danko Nikolić, Davor Andrić, Vjekoslav Nikolić
 
 © 2023, Robots Go Mental, UG or its Affiliates. 
 
-# License
+## License
 
 This project is licensed under the CC BY-NC-SA 4.0. 
 
