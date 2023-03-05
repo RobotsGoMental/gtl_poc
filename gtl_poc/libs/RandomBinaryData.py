@@ -23,18 +23,21 @@ class RandomBinaryData:
 
         if self.cousin_size >= self.num_categories:
             raise ValueError(
-                f"The number of categories in a cousin ({self.cousin_size}) must be smaller than the total number of categories ({self.num_categories})")
+                f"The number of categories in a cousin ({self.cousin_size}) must be smaller than the total number of"
+                f" categories ({self.num_categories})")
 
         if self.num_cousins > len(self.all_cousins):
             raise ValueError(
-                f"The number of cousins ({self.num_cousins}) cannot be greater than the total number of possible cousin combinations ({len(self.all_cousins)}).")
+                f"The number of cousins ({self.num_cousins}) cannot be greater than the total number of possible cousin"
+                f" combinations ({len(self.all_cousins)}).")
 
         self._generate_examples()
 
     @staticmethod
     def _sample_without_repetition(size, maximum):
         if size > maximum:
-            raise ValueError(f"Size larger than max. Size: {size}, Max: {maximum}. Possibly too many examples per category required; or insufficient depth")
+            raise ValueError(f"Size larger than max. Size: {size}, Max: {maximum}. Possibly too many examples per"
+                             f" category required; or insufficient depth")
         lista = []
         cnt = 0
         while cnt < size:
