@@ -92,3 +92,4 @@ __pycache__/
 /logs/
 /gtl_poc/checkpoints
 /gtl_poc/logs
+venv/
