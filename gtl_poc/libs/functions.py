@@ -9,7 +9,7 @@ from torch.utils.data import DataLoader
 
 import os
 
-from .MultilayerModel import MultilayerModel
+from libs.MaskedModel import MaskedModel
 
 checkpoint_dir_name = 'checkpoints'
 logs_dir = 'logs'
@@ -53,9 +53,9 @@ def train_multilayer(data, num_categories=10, name='multilayer', mask=None, chec
     tensorboard = pl_loggers.TensorBoardLogger(save_dir='logs', name=name)
 
     if checkpoint:
-        model = MultilayerModel.load_from_checkpoint(f"{checkpoint_dir_name}/{checkpoint}.ckpt", mask=mask)
+        model = MaskedModel.load_from_checkpoint(f"{checkpoint_dir_name}/{checkpoint}.ckpt", mask=mask)
     else:
-        model = MultilayerModel(num_inputs, num_hidden, num_categories, num_layers, mask)
+        model = MaskedModel(mask, num_inputs, num_hidden, num_categories, num_layers)
 
     train_loader = DataLoader(data, batch_size=batch_size, num_workers=num_workers)
     early_stop_callback = EarlyStopping(monitor="Acc/Epoch", min_delta=0.00, patience=num_epochs, verbose=True,
@@ -90,7 +90,7 @@ def create_mask(cousins, model_checkpoint):
 
         return out_mask
 
-    model = MultilayerModel.load_from_checkpoint(f'{checkpoint_dir_name}/{model_checkpoint}.ckpt')
+    model = MaskedModel.load_from_checkpoint(f'{checkpoint_dir_name}/{model_checkpoint}.ckpt')
     mask = _compute_mask(model, cousins)
     torch.save(mask, f'{checkpoint_dir_name}/mask.pt')
     return mask

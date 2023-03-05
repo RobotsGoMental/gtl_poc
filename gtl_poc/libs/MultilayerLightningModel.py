@@ -4,15 +4,14 @@ from torch import nn
 from torch.nn import functional as F
 
 
-class MultilayerModel(LightningModule):
-    def __init__(self, inputs, hidden, last_layer, linear_layers=1, mask=None):
+class MultilayerLightningModel(LightningModule):
+    def __init__(self, inputs, hidden, last_layer, linear_layers=1):
         super().__init__()
         self.save_hyperparameters()
         self.linear = nn.Linear(inputs, hidden)
         self.linear_h = nn.ModuleList([nn.Linear(hidden, hidden) for _ in range(linear_layers - 1)])
         self.Sigmoid = nn.Sigmoid()
         self.linear2 = nn.Linear(hidden, last_layer)
-        self.mask = mask
 
     def forward(self, x):
         x = self.Sigmoid(self.linear(x))
@@ -22,12 +21,6 @@ class MultilayerModel(LightningModule):
 
     def configure_optimizers(self):
         return torch.optim.Adam(self.parameters(), lr=0.03)
-
-    def on_after_backward(self):
-        if self.mask is not None:
-            for name, param in self.named_parameters():
-                if param.requires_grad:
-                    param.grad *= torch.tensor(self.mask[name], device=param.device)
 
     def training_step(self, train_batch, batch_idx):
         x, y = train_batch
