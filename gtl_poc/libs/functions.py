@@ -61,7 +61,7 @@ def train_multilayer(data, num_categories=10, name='multilayer', mask=None, chec
     early_stop_callback = EarlyStopping(monitor="Acc/Epoch", min_delta=0.00, patience=num_epochs, verbose=True,
                                         mode="max", stopping_threshold=stopping_threshold)
     callbacks = [early_stop_callback] if convergence else []
-    trainer = Trainer(enable_model_summary=False, accelerator='gpu', max_epochs=num_epochs, logger=tensorboard,
+    trainer = Trainer(enable_model_summary=False, max_epochs=num_epochs, logger=tensorboard,
                       callbacks=callbacks, log_every_n_steps=log_every_n_steps)
     trainer.fit(model, train_loader)
     return trainer
