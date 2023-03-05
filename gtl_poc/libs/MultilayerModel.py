@@ -1,4 +1,3 @@
-import pytorch_lightning as pl
 import torch
 from pytorch_lightning import LightningModule
 from torch import nn
