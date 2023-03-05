@@ -10,11 +10,11 @@ cd gtl_poc
 ```
 2. Create a new virtual environment with Python 3.9 using the following command
 ```bash
-python3.9 -m venv gtl
+python3.9 -m venv venv
 ```
 3. Activate the virtual environment using the following command:
 ```bash
-source gtl/bin/activate
+source venv/bin/activate
 ``` 
 4. Install the required packages using the following command
 ```bash
