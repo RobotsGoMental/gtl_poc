@@ -1,7 +1,7 @@
 import random
 from itertools import combinations, product
+from typing import Optional
 
-import numpy as np
 import torch
 from torch.nn import functional as F
 from torch.utils.data import TensorDataset
@@ -9,7 +9,7 @@ from torch.utils.data import TensorDataset
 
 class RandomBinaryData:
     def __init__(self, level=4, num_categories=5, num_cousin=2, examples_per_category=2, cousin_size=-1):
-        self.output = None
+        self.output: Optional[torch.Tensor] = None
         self.input = None
         self.level = level
         self.num_categories = num_categories
@@ -49,11 +49,8 @@ class RandomBinaryData:
         data = []
         for num in numbers:
             arr = [int(x) for x in bin(num)[2:]]
-            arr = np.pad(arr, (self.level - len(arr), 0), 'constant')
-            # todo: refactor with torch and then get rid of numpy dependency
-            #  https://stackoverflow.com/questions/57628457/padding-a-list-of-torch-tensors-or-numpy-arrays
-            data.append(list(torch.from_numpy(arr).float()))  # torch.from_numpy(arr).float()
-
+            arr = torch.nn.functional.pad(torch.tensor(arr), (self.level - len(arr), 0), 'constant')
+            data.append(list(arr.float()))
         output = [[float(c)] for c, _ in product(range(self.num_categories), range(self.examples_per_dimension))]
         self.input, self.output = torch.tensor(data), torch.tensor(output)
 
@@ -78,7 +75,7 @@ class RandomBinaryData:
             cousin = self.subset_cousins[cousin_id]
 
             for condition in cousin:
-                ii = np.where(np.array(self.output) == condition)
+                ii = torch.where(self.output == condition)
                 for i in ii[0]:
                     cousins_output.append(self.output[i])
                     cousins_input.append(self.input[i])
